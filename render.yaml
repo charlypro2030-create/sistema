@@ -23,9 +23,8 @@ services:
     name: sistema-frontend
     runtime: static
     plan: free
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishDir: dist
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishDir: ./frontend/dist
     routes:
       - type: rewrite
         source: /*
