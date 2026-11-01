@@ -3,8 +3,9 @@ services:
     name: sistema-backend
     runtime: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && npm run start
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm run start
     healthCheckPath: /api/health
     envVars:
       - key: SUPABASE_URL
@@ -22,8 +23,9 @@ services:
     name: sistema-frontend
     runtime: static
     plan: free
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishDir: ./frontend/dist
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishDir: dist
     routes:
       - type: rewrite
         source: /*
