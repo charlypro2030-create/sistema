@@ -26,7 +26,12 @@ app.get("/api/health", async (req, res, next) => {
   }
 });
 
-app.use("/api", authenticate, apiRouter);
+// Autenticacion opcional: se exige solo si AUTH_REQUIRED=true
+if (process.env.AUTH_REQUIRED === "true") {
+  app.use("/api", authenticate, apiRouter);
+} else {
+  app.use("/api", apiRouter);
+}
 
 // 404
 app.use((req, res) => {
