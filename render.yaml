@@ -16,6 +16,8 @@ services:
         sync: false
       - key: SUPABASE_JWT_SECRET
         sync: false
+      - key: AUTH_REQUIRED
+        value: "false"
       - key: PORT
         value: 10000
 
@@ -23,8 +25,9 @@ services:
     name: sistema-frontend
     runtime: static
     plan: free
-    buildCommand: cd frontend && npm install && npm run build
-    staticPublishDir: ./frontend/dist
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishDir: dist
     routes:
       - type: rewrite
         source: /*
