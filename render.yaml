@@ -18,9 +18,10 @@ services:
       - key: PORT
         value: 10000
 
-  - type: web
+  - type: static
     name: sistema-frontend
     runtime: static
+    plan: free
     buildCommand: cd frontend && npm install && npm run build
     staticPublishDir: ./frontend/dist
     routes:
